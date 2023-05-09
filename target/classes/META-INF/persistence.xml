@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="hello">
+        <properties>
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="jpa"/>
+            <property name="javax.persistence.jdbc.password" value="jpa$123"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/jpa_basic"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+            <!--hibernate.dialect : 데이터베이스 방언 (JPA 는 특정 데이터베이스에 종속 되어있지 않다.) SQL 표준을 지키지 않는 특정 데이터베이스만의 고유 기능-->
+
+            <!-- 옵션 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <!--<property name="hibernate.jdbc.batch_size" value="10"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
