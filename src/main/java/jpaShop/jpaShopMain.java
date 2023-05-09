@@ -1,6 +1,7 @@
 package jpaShop;
 
-import hellojpa.Member;
+import jpaShop.domain.Member;
+import jpaShop.domain.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,6 +18,23 @@ public class jpaShopMain {
         tx.begin();
 
         try {
+
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("memberA");
+            member.setTeam(team);
+            em.persist(member);
+
+            em.flush(); // db 강제 호출
+            em.clear(); // 영속성 컨테스트 초기화
+
+            Member findMember = em.find(Member.class, member.getId());
+            Team findTeam = findMember.getTeam();
+            System.out.println("findTeam = " + findTeam.getName());
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
