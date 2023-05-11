@@ -1,6 +1,8 @@
 package jpaShop;
 
 import jpaShop.domain.Member;
+import jpaShop.domain.Order;
+import jpaShop.domain.OrderItem;
 import jpaShop.domain.Team;
 
 import javax.persistence.EntityManager;
@@ -19,6 +21,9 @@ public class jpaShopMain {
         tx.begin();
 
         try {
+
+//            Order order = new Order();
+//            order.addOrderItem(new OrderItem());
 
             Team team = new Team();
             team.setName("TeamA");
