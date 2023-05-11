@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class jpaShopMain {
 
@@ -21,19 +22,24 @@ public class jpaShopMain {
 
             Team team = new Team();
             team.setName("TeamA");
+
             em.persist(team);
 
             Member member = new Member();
             member.setUsername("memberA");
-            member.setTeam(team);
+            member.changeTeam(team); // 둘 중 하나만
+            // team.addMember(member); // 둘 중 하나만
             em.persist(member);
 
-            em.flush(); // db 강제 호출
-            em.clear(); // 영속성 컨테스트 초기화
+//            em.flush(); // db 강제 호출
+//            em.clear(); // 영속성 컨테스트 초기화
 
-            Member findMember = em.find(Member.class, member.getId());
-            Team findTeam = findMember.getTeam();
-            System.out.println("findTeam = " + findTeam.getName());
+            Team findTeam = em.find(Team.class, team.getId());
+            System.out.println("findTeam.setName()); = " + findTeam.getName());
+            List<Member> members = findTeam.getMembers();
+            for (Member m : members) {
+                System.out.println("m.getUsername() = " + m.getUsername());
+            }
 
             tx.commit();
         } catch (Exception e) {
