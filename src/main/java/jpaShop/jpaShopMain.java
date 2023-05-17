@@ -21,31 +21,6 @@ public class jpaShopMain {
         tx.begin();
 
         try {
-
-//            Order order = new Order();
-//            order.addOrderItem(new OrderItem());
-
-            Team team = new Team();
-            team.setName("TeamA");
-
-            em.persist(team);
-
-            Member member = new Member();
-            member.setUsername("memberA");
-            member.changeTeam(team); // 둘 중 하나만
-            // team.addMember(member); // 둘 중 하나만
-            em.persist(member);
-
-//            em.flush(); // db 강제 호출
-//            em.clear(); // 영속성 컨테스트 초기화
-
-            Team findTeam = em.find(Team.class, team.getId());
-            System.out.println("findTeam.setName()); = " + findTeam.getName());
-            List<Member> members = findTeam.getMembers();
-            for (Member m : members) {
-                System.out.println("m.getUsername() = " + m.getUsername());
-            }
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

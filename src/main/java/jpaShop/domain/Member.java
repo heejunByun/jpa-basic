@@ -19,13 +19,14 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
     // Member Class 입장에서 N : 1
     @ManyToOne
     @JoinColumn(name = "TEAM_ID") // Join 하는 칼럼
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
     public Long getId() {
         return id;
