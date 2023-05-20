@@ -1,6 +1,8 @@
 package jpaShop;
 
 import jpaShop.domain.*;
+import jpaShop.theoryTest.Child;
+import jpaShop.theoryTest.Parent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,11 +21,23 @@ public class jpaShopMain {
 
         try {
 
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
+            Parent parent = new Parent();
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            em.persist(book);
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            em.persist(parent);
+
+            em.flush();
+            em.clear();
+
+            Parent findParent = em.find(Parent.class, parent.getParent_id());
+            findParent.getChildList().remove(0);
+//            Child findChild = em.find(Child.class, child1.getChild_id());
+//            em.remove(findChild);
+
 
             tx.commit();
         } catch (Exception e) {

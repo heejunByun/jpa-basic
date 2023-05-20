@@ -1,9 +1,6 @@
 package jpaShop.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Delivery extends BaseEntity {
@@ -18,6 +15,6 @@ public class Delivery extends BaseEntity {
     private DeliveryStatus status;
 
     // Order 와 Delivery 1대1 관계
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 }
