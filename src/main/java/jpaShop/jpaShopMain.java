@@ -1,9 +1,6 @@
 package jpaShop;
 
-import jpaShop.domain.Member;
-import jpaShop.domain.Order;
-import jpaShop.domain.OrderItem;
-import jpaShop.domain.Team;
+import jpaShop.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +18,13 @@ public class jpaShopMain {
         tx.begin();
 
         try {
+
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+
+            em.persist(book);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
